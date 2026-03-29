@@ -12,7 +12,7 @@ const projects = [
       "End-to-end ML pipeline with Gradient Boosting + SMOTE to classify near-Earth asteroids as hazardous or safe using live NASA JPL data. Integrated NASA NeoWs, JPL Sentry, and CAD APIs. Built an interactive 3D space tracker in Three.js with 1,500+ real asteroid positions, deployed on Streamlit Cloud.",
     tags: ["Gradient Boosting", "SMOTE", "Three.js", "NASA APIs", "Streamlit", "Python", "ML"],
     github: "https://github.com/ManishKanuri",
-    demo: "https://streamlit.io",
+    demo: "https://aestroid-hazard-predictor-ug7bs3dcn9adao2vxsxant.streamlit.app/",
     featured: true,
   },
   {
