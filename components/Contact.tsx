@@ -28,14 +28,30 @@ const contactInfo = [
 export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [sending, setSending] = useState(false);
+  const [sent, setSent] = useState(false);
+  const [error, setError] = useState(false);
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setSending(true);
-    const subject = `Portfolio Contact from ${form.name}`;
-    const body = `Name: ${form.name}\nEmail: ${form.email}\n\nMessage:\n${form.message}`;
-    window.location.href = `mailto:Kanuri.m@northeastern.edu?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    setTimeout(() => setSending(false), 1000);
+    setError(false);
+    try {
+      const res = await fetch("https://formspree.io/f/mbdpglwo", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({ name: form.name, email: form.email, message: form.message }),
+      });
+      if (res.ok) {
+        setSent(true);
+        setForm({ name: "", email: "", message: "" });
+      } else {
+        setError(true);
+      }
+    } catch {
+      setError(true);
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
@@ -143,12 +159,23 @@ export default function Contact() {
             />
             <button
               type="submit"
-              disabled={sending}
+              disabled={sending || sent}
               className="flex items-center justify-center gap-2 bg-gradient-to-r from-cyan-500 to-purple-600 text-white rounded-lg py-3 font-medium hover:opacity-90 transition-opacity disabled:opacity-60 shadow-lg shadow-cyan-500/20"
             >
               <Send size={15} />
-              {sending ? "Opening email..." : "Send Message"}
+              {sending ? "Sending..." : sent ? "Message Sent!" : "Send Message"}
             </button>
+
+            {sent && (
+              <p className="text-green-500 text-sm text-center">
+                ✓ Message received! I&apos;ll get back to you soon.
+              </p>
+            )}
+            {error && (
+              <p className="text-red-400 text-sm text-center">
+                Something went wrong. Please email me directly at Kanuri.m@northeastern.edu
+              </p>
+            )}
           </motion.form>
         </div>
       </div>
