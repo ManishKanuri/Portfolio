@@ -26,14 +26,14 @@ const projects = [
     featured: false,
   },
   {
-    title: "NBA Player Performance Prediction",
-    period: "Sep 2025 – Dec 2025",
+    title: "NBA Lab – Awards & Championship Predictor",
+    period: "Sep 2025 – Mar 2026",
     description:
-      "End-to-end ML pipelines using regression and classification models with advanced feature engineering to predict NBA player performance metrics. Improved prediction accuracy by ~20% over baseline through hyperparameter tuning and cross-validation.",
-    tags: ["Scikit-learn", "Pandas", "Matplotlib", "Regression", "Classification", "Python", "ML"],
-    github: "https://github.com/ManishKanuri",
-    demo: null,
-    featured: false,
+      "Full-stack ML web app that pulls live NBA Stats API data to predict MVP, ROTY, DPOY, First Team All-NBA, and championship odds. Features k-means position clustering, an assistant-style chat UI, and disk-cached API responses. Deployed on Render with a FastAPI backend.",
+    tags: ["FastAPI", "Scikit-learn", "Pandas", "k-means", "Python", "ML", "REST API"],
+    github: "https://github.com/ManishKanuri/NBA-Awards-prediction",
+    demo: "https://nba-awards-prediction.onrender.com",
+    featured: true,
   },
   {
     title: "Toxic Behavior Detection in Online Games",
