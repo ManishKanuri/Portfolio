@@ -47,7 +47,7 @@ const projects = [
   },
 ];
 
-const filterButtons = ["All", "Python", "NLP", "ML", "RAG", "Three.js", "AWS"];
+const filterButtons = ["All", "Python", "NLP", "ML", "RAG", "Three.js"];
 
 function projectMatchesFilter(project: typeof projects[0], filter: string): boolean {
   if (filter === "All") return true;

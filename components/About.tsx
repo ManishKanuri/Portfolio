@@ -44,12 +44,21 @@ export default function About() {
               Experienced in developing data-driven applications and applying
               ML techniques to solve real-world problems.
             </p>
-            <p className="text-slate-500 dark:text-slate-400 text-base leading-relaxed mb-8">
-              With hands-on experience in Python, PyTorch, and AWS (Bedrock,
-              SageMaker, Lambda), I build end-to-end ML pipelines, LLM-powered
-              tools, and scalable data systems. I thrive in cross-functional
-              teams and enjoy translating complex findings into clear,
-              actionable insights for both technical and non-technical audiences.
+            <p className="text-slate-600 dark:text-slate-400 text-base leading-relaxed mb-4">
+              I specialize in building end-to-end ML pipelines, from data preprocessing
+              and feature engineering to model development and evaluation, using tools
+              such as Python, Pandas, Scikit-learn, and Apache Spark.
+            </p>
+            <p className="text-slate-600 dark:text-slate-400 text-base leading-relaxed mb-4">
+              I have applied machine learning techniques to real-world problems including
+              toxic behavior detection and large-scale data analysis, with an emphasis on
+              model performance, scalability, and practical deployment. My interests lie
+              in applied AI, natural language processing, and building intelligent systems
+              that deliver measurable impact.
+            </p>
+            <p className="text-cyan-600 dark:text-cyan-400 text-base font-medium leading-relaxed mb-8">
+              Actively seeking opportunities in Data Science, Machine Learning, and AI
+              to develop scalable, data-driven solutions.
             </p>
 
             <div className="flex flex-col gap-3">
