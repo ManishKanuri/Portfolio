@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { Github, Linkedin, Mail, ChevronDown, Download, FileText } from "lucide-react";
 import Image from "next/image";
 import ResumeModal from "./ResumeModal";
+import NeuralBackground from "./NeuralBackground";
 
 const titles = [
   "Data Scientist",
@@ -58,18 +59,8 @@ export default function Hero() {
   return (
     <>
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-slate-50 dark:bg-[#0a0a0f]">
-        {/* Grid background */}
-        <div
-          className="absolute inset-0 z-0"
-          style={{
-            backgroundImage: `
-              radial-gradient(ellipse at 50% 50%, rgba(6, 182, 212, 0.1) 0%, transparent 65%),
-              linear-gradient(rgba(6, 182, 212, 0.035) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(6, 182, 212, 0.035) 1px, transparent 1px)
-            `,
-            backgroundSize: "100% 100%, 60px 60px, 60px 60px",
-          }}
-        />
+        {/* Neural network animated background */}
+        <NeuralBackground />
 
         {/* Gradient orbs */}
         <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-cyan-500/5 dark:bg-cyan-500/8 rounded-full blur-3xl pointer-events-none" />

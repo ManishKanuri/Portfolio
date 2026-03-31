@@ -1,7 +1,42 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useRef, useEffect, useState } from "react";
+import { motion, useInView, useMotionValue, useSpring } from "framer-motion";
 import { MapPin, Mail, Phone } from "lucide-react";
+
+function AnimatedStat({ value, label, sub }: { value: string; label: string; sub: string }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true });
+  const suffix = value.replace(/[\d.]/g, "");
+  const num = parseFloat(value.replace(/[^\d.]/g, ""));
+  const decimals = value.includes(".") ? value.split(".")[1]?.replace(/\D/g, "").length : 0;
+  const motionVal = useMotionValue(0);
+  const spring = useSpring(motionVal, { stiffness: 60, damping: 18 });
+  const [display, setDisplay] = useState("0");
+
+  useEffect(() => {
+    if (inView) motionVal.set(num);
+  }, [inView, num, motionVal]);
+
+  useEffect(() => {
+    return spring.on("change", (v) => {
+      setDisplay(v.toFixed(decimals) + suffix);
+    });
+  }, [spring, decimals, suffix]);
+
+  return (
+    <div
+      ref={ref}
+      className="bg-slate-50 dark:bg-[#111118] border border-slate-200 dark:border-[#1e293b] rounded-xl p-5 text-center hover:border-cyan-400/30 transition-colors"
+    >
+      <div className="text-3xl font-bold bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent mb-1">
+        {display}
+      </div>
+      <div className="text-slate-900 dark:text-white font-medium text-sm">{label}</div>
+      <div className="text-slate-400 dark:text-slate-500 text-xs mt-0.5">{sub}</div>
+    </div>
+  );
+}
 
 const stats = [
   { value: "4.0", label: "GPA", sub: "Northeastern" },
@@ -94,21 +129,10 @@ export default function About() {
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
           >
-            {/* Stats grid */}
+            {/* Stats grid — animated counters */}
             <div className="grid grid-cols-2 gap-4 mb-6">
               {stats.map((stat) => (
-                <div
-                  key={stat.label}
-                  className="bg-slate-50 dark:bg-[#111118] border border-slate-200 dark:border-[#1e293b] rounded-xl p-5 text-center hover:border-cyan-400/30 transition-colors"
-                >
-                  <div className="text-3xl font-bold bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent mb-1">
-                    {stat.value}
-                  </div>
-                  <div className="text-slate-900 dark:text-white font-medium text-sm">
-                    {stat.label}
-                  </div>
-                  <div className="text-slate-400 dark:text-slate-500 text-xs mt-0.5">{stat.sub}</div>
-                </div>
+                <AnimatedStat key={stat.label} value={stat.value} label={stat.label} sub={stat.sub} />
               ))}
             </div>
 
